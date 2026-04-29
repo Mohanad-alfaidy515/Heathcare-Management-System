@@ -1,0 +1,102 @@
+[
+  {
+    "Id": 1,
+    "FirstName": "Omar",
+    "LastName": "Hassan",
+    "Gender": 1,
+    "DateOfBirth": "1985-03-12T00:00:00",
+    "PhoneNumber": "01011111111",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 2,
+    "FirstName": "Laila",
+    "LastName": "Samy",
+    "Gender": 2,
+    "DateOfBirth": "1992-07-22T00:00:00",
+    "PhoneNumber": "01222222222",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 3,
+    "FirstName": "Youssef",
+    "LastName": "Nabil",
+    "Gender": 1,
+    "DateOfBirth": "2010-01-05T00:00:00",
+    "PhoneNumber": "01133333333",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 4,
+    "FirstName": "Mariam",
+    "LastName": "Farid",
+    "Gender": 2,
+    "DateOfBirth": "1988-11-30T00:00:00",
+    "PhoneNumber": "01544444444",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 5,
+    "FirstName": "Zaid",
+    "LastName": "Karim",
+    "Gender": 1,
+    "DateOfBirth": "2015-05-18T00:00:00",
+    "PhoneNumber": "01055555555",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 6,
+    "FirstName": "Fatma",
+    "LastName": "Ezzat",
+    "Gender": 2,
+    "DateOfBirth": "1975-09-14T00:00:00",
+    "PhoneNumber": "01266666666",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 7,
+    "FirstName": "Adam",
+    "LastName": "Mounir",
+    "Gender": 1,
+    "DateOfBirth": "2020-02-10T00:00:00",
+    "PhoneNumber": "01177777777",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 8,
+    "FirstName": "Hana",
+    "LastName": "Salem",
+    "Gender": 2,
+    "DateOfBirth": "1998-12-25T00:00:00",
+    "PhoneNumber": "01588888888",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 9,
+    "FirstName": "Tamer",
+    "LastName": "Adel",
+    "Gender": 1,
+    "DateOfBirth": "1982-06-08T00:00:00",
+    "PhoneNumber": "01099999999",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 10,
+    "FirstName": "Sara",
+    "LastName": "Fouad",
+    "Gender": 2,
+    "DateOfBirth": "2003-04-19T00:00:00",
+    "PhoneNumber": "01200000000",
+    "CreatedAt": "2026-02-01T10:00:00",
+    "IsDeleted": false
+  }
+]

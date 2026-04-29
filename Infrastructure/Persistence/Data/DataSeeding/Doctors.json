@@ -1,0 +1,201 @@
+[
+  {
+    "Id": 1,
+    "FirstName": "Ahmed",
+    "LastName": "Ali",
+    "Title": "Consultant",
+    "Bio": "Expert in heart surgeries.",
+    "SpecializationId": 1,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 2,
+    "FirstName": "Sara",
+    "LastName": "Hassan",
+    "Title": "Specialist",
+    "Bio": "Focused on laser treatments.",
+    "SpecializationId": 2,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 3,
+    "FirstName": "Mohamed",
+    "LastName": "Samy",
+    "Title": "Consultant",
+    "Bio": "Pediatric care expert.",
+    "SpecializationId": 3,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 4,
+    "FirstName": "Mona",
+    "LastName": "Zaki",
+    "Title": "Specialist",
+    "Bio": "Cardiology diagnostic expert.",
+    "SpecializationId": 1,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 5,
+    "FirstName": "Khaled",
+    "LastName": "Ibrahim",
+    "Title": "Consultant",
+    "Bio": "Skin cancer specialist.",
+    "SpecializationId": 2,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 6,
+    "FirstName": "Laila",
+    "LastName": "Mahmoud",
+    "Title": "Specialist",
+    "Bio": "Newborn health specialist.",
+    "SpecializationId": 3,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 7,
+    "FirstName": "Youssef",
+    "LastName": "Fayed",
+    "Title": "Consultant",
+    "Bio": "Heart valve replacement expert.",
+    "SpecializationId": 1,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 8,
+    "FirstName": "Hoda",
+    "LastName": "Amer",
+    "Title": "Specialist",
+    "Bio": "Cosmetic dermatology expert.",
+    "SpecializationId": 2,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 9,
+    "FirstName": "Omar",
+    "LastName": "Farouk",
+    "Title": "Consultant",
+    "Bio": "Childhood nutrition specialist.",
+    "SpecializationId": 3,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 10,
+    "FirstName": "Nadia",
+    "LastName": "Osman",
+    "Title": "Specialist",
+    "Bio": "Electrophysiology expert.",
+    "SpecializationId": 1,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 11,
+    "FirstName": "Tarek",
+    "LastName": "Hamdy",
+    "Title": "Consultant",
+    "Bio": "Advanced skin pathology.",
+    "SpecializationId": 2,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 12,
+    "FirstName": "Yasmin",
+    "LastName": "Gaber",
+    "Title": "Specialist",
+    "Bio": "Pediatric emergency doctor.",
+    "SpecializationId": 3,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 13,
+    "FirstName": "Mostafa",
+    "LastName": "Bakr",
+    "Title": "Consultant",
+    "Bio": "Interventional cardiologist.",
+    "SpecializationId": 1,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 14,
+    "FirstName": "Dina",
+    "LastName": "Nour",
+    "Title": "Specialist",
+    "Bio": "Dermatological surgery expert.",
+    "SpecializationId": 2,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 15,
+    "FirstName": "Hassan",
+    "LastName": "Kamel",
+    "Title": "Consultant",
+    "Bio": "Adolescent medicine specialist.",
+    "SpecializationId": 3,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 16,
+    "FirstName": "Ayman",
+    "LastName": "Saad",
+    "Title": "Specialist",
+    "Bio": "Heart failure management.",
+    "SpecializationId": 1,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 17,
+    "FirstName": "Salma",
+    "LastName": "Ezzat",
+    "Title": "Consultant","Bio": "Autoimmune skin disorders.",
+    "SpecializationId": 2,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 18,
+    "FirstName": "Bassem",
+    "LastName": "Raafat",
+    "Title": "Specialist",
+    "Bio": "Pediatric vaccination expert.",
+    "SpecializationId": 3,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 19,
+    "FirstName": "Sherif",
+    "LastName": "Mounir",
+    "Title": "Consultant",
+    "Bio": "Vascular cardiology specialist.",
+    "SpecializationId": 1,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  },
+  {
+    "Id": 20,
+    "FirstName": "Amira",
+    "LastName": "Fathi",
+    "Title": "Specialist",
+    "Bio": "Pediatric allergy specialist.",
+    "SpecializationId": 3,
+    "CreatedAt": "2026-01-01T10:00:00",
+    "IsDeleted": false
+  }
+]
