@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Contract
 {
-    public interface IUniteOfWork
+    public interface IUnitOfWork
     {
         //unite of work to Generate Repoistory to deal with rables
         Task<int> SaveChangesAsync();
         //Generate Repoistory
-        IGenericRepoistory<TEntity, Tkey> GetRepoistory<TEntity, Tkey>() where TEntity : BaseEntity<Tkey>;
+        IGenericRepository<TEntity, Tkey> GetRepository<TEntity, Tkey>() where TEntity : BaseEntity<Tkey>;
     }
 }

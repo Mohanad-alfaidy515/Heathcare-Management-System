@@ -1,5 +1,6 @@
-﻿using Domain.Contract;
+using Domain.Contract;
 using Domain.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Persistence
 {
-    public class DbInitializer(ApplicationDbContext _context) : IDbInitializer
+    public class DbInitializer(ApplicationDbContext _context, RoleManager<IdentityRole> _roleManager, UserManager<ApplicationUser> _userManager) : IDbInitializer
     {
         public async Task InitilizeAsync()
         {
@@ -24,6 +25,30 @@ namespace Persistence
             {
                 await _context.Database.MigrateAsync(); 
             }
+
+            // Seed Roles
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            if (!await _roleManager.RoleExistsAsync("Doctor"))
+                await _roleManager.CreateAsync(new IdentityRole("Doctor"));
+            if (!await _roleManager.RoleExistsAsync("Patient"))
+                await _roleManager.CreateAsync(new IdentityRole("Patient"));
+
+            // Seed Admin User
+            if (await _userManager.FindByEmailAsync("admin@healthcare.com") == null)
+            {
+                var admin = new ApplicationUser
+                {
+                    UserName = "admin@healthcare.com",
+                    Email = "admin@healthcare.com",
+                    FirstName = "System",
+                    LastName = "Admin",
+                    EmailConfirmed = true
+                };
+                await _userManager.CreateAsync(admin, "Admin@123456");
+                await _userManager.AddToRoleAsync(admin, "Admin");
+            }
+
             if (!_context.Specializations.Any()) {
 
                 //Read all textAsync from json file

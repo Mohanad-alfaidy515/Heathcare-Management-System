@@ -9,11 +9,21 @@ using AutoMapper;
 using ServiceAbstractions;
 using System.Threading.Tasks;
 using Service.MappingProfile;
-using Microsoft.Extensions.DependencyInjection;
 using serviceRef = Service.AssemblyReference2;
 using Heathcare_Management_System.Middlewares;
 using Microsoft.AspNetCore.Mvc;
 using Shared.ErrorModels;
+using Domain.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Threading.RateLimiting;
+using Microsoft.AspNetCore.RateLimiting;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using Service.Validators;
+
 namespace Heathcare_Management_System
 {
     public class Program
@@ -25,15 +35,65 @@ namespace Heathcare_Management_System
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining<RegisterDtoValidator>();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
             builder.Services.AddDbContext<ApplicationDbContext>(options => 
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 8;
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? "VerySecretKeyForDevelopmentPurposesOnly"))
+                };
+            });
+
+            builder.Services.AddRateLimiter(options =>
+            {
+                options.AddFixedWindowLimiter(policyName: "fixed", options =>
+                {
+                    options.PermitLimit = 10;
+                    options.Window = TimeSpan.FromSeconds(10);
+                    options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                    options.QueueLimit = 2;
+                });
+            });
+
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+            builder.Services.AddProblemDetails();
+
             builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-            builder.Services.AddScoped<IUniteOfWork, UniteOfWork>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IServiceManager, ServiceManager>();
             builder.Services.AddAutoMapper(conf=> {
                 conf.AddMaps(typeof(serviceRef).Assembly);
@@ -63,7 +123,8 @@ namespace Heathcare_Management_System
             using var scope=app.Services.CreateScope();
            var dbinializer= scope.ServiceProvider.GetRequiredService<IDbInitializer>();
            await dbinializer.InitilizeAsync();
-            app.UseMiddleware<GlobalErrorHandlingMiddleware>();
+
+            app.UseExceptionHandler();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -74,10 +135,12 @@ namespace Heathcare_Management_System
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseRateLimiter();
 
 
-            app.MapControllers();
+            app.MapControllers().RequireRateLimiting("fixed");
 
             app.Run();
         }
