@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class PatientService(IUniteOfWork uniteOfWork,IMapper mapper) : IPatientService
+    public class PatientService(IUnitOfWork unitOfWork,IMapper mapper) : IPatientService
     {
         public async Task<IEnumerable<PatientDto>> GetAllPatients()
         {
-           var patients=await uniteOfWork.GetRepoistory<Patient, int>().GetAllAsync();
+           var patients=await unitOfWork.GetRepository<Patient, int>().GetAllAsync();
             var result= mapper.Map<IEnumerable<PatientDto>>(patients);
             return result;
         }
@@ -25,7 +25,7 @@ namespace Service
 
         public async Task<PatientDto> GetPatientById(int id)
         {
-            var patients=await  uniteOfWork.GetRepoistory<Patient, int>().GetByIdAsync(id);
+            var patients=await  unitOfWork.GetRepository<Patient, int>().GetByIdAsync(id);
             if (patients == null || patients.IsDeleted)
                 throw new Patient_NotFoundException(id);
             return mapper.Map<PatientDto>(patients);
@@ -34,18 +34,18 @@ namespace Service
         public async Task<bool> UpdateStatus(int id, PatientDto patient)
         {
             var patientEntity = mapper.Map<Patient>(patient);
-             uniteOfWork.GetRepoistory<Patient,int>().Update(id, patientEntity);
-            await uniteOfWork.SaveChangesAsync();
+             unitOfWork.GetRepository<Patient,int>().Update(id, patientEntity);
+            await unitOfWork.SaveChangesAsync();
             return true;
         }
         public async Task<bool> DeleteStatus(int id)
         {
             //var patientEntity = mapper.Map<Patient>(patientDto);
-            var patient = await uniteOfWork.GetRepoistory<Patient, int>().GetByIdAsync(id);
+            var patient = await unitOfWork.GetRepository<Patient, int>().GetByIdAsync(id);
             if (patient == null) return false;
             patient.isDelete=true;
-            uniteOfWork.GetRepoistory<Patient, int>().Update(id,patient);
-            await uniteOfWork.SaveChangesAsync();
+            unitOfWork.GetRepository<Patient, int>().Update(id,patient);
+            await unitOfWork.SaveChangesAsync();
             return true;
 
 

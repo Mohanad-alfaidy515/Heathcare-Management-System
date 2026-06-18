@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ServiceAbstractions;
 
 namespace ServiceAbstractions
 {
@@ -11,5 +7,9 @@ namespace ServiceAbstractions
         IDoctorService doctorService { get; }
         IAppointmentService appointmentService { get; }
         IPatientService PatientService { get; }
+        IAuthService AuthService { get; }
+        IMedicalRecordService MedicalRecordService { get; }
+        ISchedulingService SchedulingService { get; }
+        IInvoiceService InvoiceService { get; }
     }
 }

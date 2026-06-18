@@ -13,16 +13,16 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class DoctorService(IUniteOfWork uniteOfWork,IMapper mapper)
+    public class DoctorService(IUnitOfWork unitOfWork,IMapper mapper)
         : IDoctorService
     {
         public async Task<PaginationResponse<DoctoerReturnDto>> GetAllDoctorAsync(DoctorSpecificationsParamters specparm)
         {
             var spec = new DoctorSpecifications(specparm);
-          //throught repoistory 
-         var doctors= await uniteOfWork.GetRepoistory<Doctor,int>().GetAllAsync(spec);
+          //throught repository
+         var doctors= await unitOfWork.GetRepository<Doctor,int>().GetAllAsync(spec);
             var speccount = new DoctorCountSpecifications(specparm);
-            var count=await uniteOfWork.GetRepoistory<Doctor,int>().CountASYNC(speccount);
+            var count=await unitOfWork.GetRepository<Doctor,int>().CountAsync(speccount);
             //mapping 
            var resuult= mapper.Map<IEnumerable<DoctoerReturnDto>>(doctors);
             return  new PaginationResponse<DoctoerReturnDto>(specparm._pageIndex,specparm._pageSize, count, resuult);
@@ -33,7 +33,7 @@ namespace Service
         {
             //var spec=new DoctorSpecifications(id);
           
-           var doctor=await uniteOfWork.GetRepoistory<Doctor,int>().GetByIdAsync(id);   
+           var doctor=await unitOfWork.GetRepository<Doctor,int>().GetByIdAsync(id);
             if(doctor is null ) throw new DoctorNotFoundException(id);
            var result= mapper.Map<DoctoerReturnDto>(doctor);
             return result;
@@ -41,7 +41,7 @@ namespace Service
 
         public async Task<IEnumerable<SpecializationReturnDto>> GetSpecializationAsync()
         {
-            var specialization=await  uniteOfWork.GetRepoistory<Specialization,int>().GetAllAsync();
+            var specialization=await  unitOfWork.GetRepository<Specialization,int>().GetAllAsync();
             var result= mapper.Map<IEnumerable<SpecializationReturnDto>>(specialization);
             return result;
         }
