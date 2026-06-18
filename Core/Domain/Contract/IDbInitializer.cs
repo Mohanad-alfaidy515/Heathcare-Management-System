@@ -9,5 +9,7 @@ namespace Domain.Contract
     public interface IDbInitializer
     {
         Task InitilizeAsync();
+        Task InitilizeidentityAsync();
+        
     }
 }

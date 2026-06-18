@@ -123,6 +123,17 @@ namespace Persistence
                 }
             }
 
+
+            if(_context.Database.GetPendingMigrations().Any())
+            {
+                await _context.Database.MigrateAsync();   
+            }
+
+        }
+
+        public async Task InitilizeidentityAsync()
+        {
+            await Task.CompletedTask;
         }
     }
 }
